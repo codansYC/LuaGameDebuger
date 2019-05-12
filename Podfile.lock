@@ -1,0 +1,20 @@
+PODS:
+  - CocoaAsyncSocket (7.6.3)
+  - CryptoSwift (0.13.1)
+
+DEPENDENCIES:
+  - CocoaAsyncSocket
+  - CryptoSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CocoaAsyncSocket
+    - CryptoSwift
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
+
+PODFILE CHECKSUM: 6334b651b37a3e98a5906352ab405e9bd8a955cb
+
+COCOAPODS: 1.5.3

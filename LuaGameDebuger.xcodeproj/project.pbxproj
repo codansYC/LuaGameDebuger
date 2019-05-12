@@ -1,0 +1,714 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03D9CD85200463BBFA5EDBE5 /* Pods_LuaGameDebugerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B3D429B228E06723A1E7F4 /* Pods_LuaGameDebugerTests.framework */; };
+		176260397B616E903DF800E6 /* Pods_LuaGameDebugerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7001D24C0FEC743F9EFE31A /* Pods_LuaGameDebugerUITests.framework */; };
+		187AD51F5580BCB352642F52 /* Pods_LuaGameDebuger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB26C33A3ADFF5DA55DE73 /* Pods_LuaGameDebuger.framework */; };
+		42047C242286CED5003D8849 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42047C232286CED5003D8849 /* Server.swift */; };
+		422B08742287307200B5CFCA /* Data+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B08732287307200B5CFCA /* Data+md5.swift */; };
+		42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F33228315AF005B0C14 /* AppDelegate.swift */; };
+		42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F35228315AF005B0C14 /* MainViewController.swift */; };
+		42C56F38228315B1005B0C14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C56F37228315B1005B0C14 /* Assets.xcassets */; };
+		42C56F3B228315B1005B0C14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42C56F39228315B1005B0C14 /* Main.storyboard */; };
+		42C56F47228315B1005B0C14 /* LuaGameDebugerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F46228315B1005B0C14 /* LuaGameDebugerTests.swift */; };
+		42C56F52228315B1005B0C14 /* LuaGameDebugerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F51228315B1005B0C14 /* LuaGameDebugerUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42C56F43228315B1005B0C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42C56F28228315AF005B0C14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42C56F2F228315AF005B0C14;
+			remoteInfo = LuaGameDebuger;
+		};
+		42C56F4E228315B1005B0C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42C56F28228315AF005B0C14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42C56F2F228315AF005B0C14;
+			remoteInfo = LuaGameDebuger;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1297D80769B211231D7F501F /* Pods-LuaGameDebugerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebugerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebugerTests/Pods-LuaGameDebugerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1E761BC68C805B93100397F1 /* Pods-LuaGameDebugerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebugerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebugerTests/Pods-LuaGameDebugerTests.release.xcconfig"; sourceTree = "<group>"; };
+		21BB26C33A3ADFF5DA55DE73 /* Pods_LuaGameDebuger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuaGameDebuger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D616A4FDF634FEB52591486 /* Pods-LuaGameDebugerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebugerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebugerUITests/Pods-LuaGameDebugerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		42047C232286CED5003D8849 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		422B08732287307200B5CFCA /* Data+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+md5.swift"; sourceTree = "<group>"; };
+		42C56F30228315AF005B0C14 /* LuaGameDebuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaGameDebuger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C56F33228315AF005B0C14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42C56F35228315AF005B0C14 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		42C56F37228315B1005B0C14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42C56F3A228315B1005B0C14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42C56F3C228315B1005B0C14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C56F3D228315B1005B0C14 /* LuaGameDebuger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LuaGameDebuger.entitlements; sourceTree = "<group>"; };
+		42C56F42228315B1005B0C14 /* LuaGameDebugerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuaGameDebugerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C56F46228315B1005B0C14 /* LuaGameDebugerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaGameDebugerTests.swift; sourceTree = "<group>"; };
+		42C56F48228315B1005B0C14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C56F4D228315B1005B0C14 /* LuaGameDebugerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LuaGameDebugerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42C56F51228315B1005B0C14 /* LuaGameDebugerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuaGameDebugerUITests.swift; sourceTree = "<group>"; };
+		42C56F53228315B1005B0C14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80C6CF85936E6EB9DEBD192C /* Pods-LuaGameDebuger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebuger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebuger/Pods-LuaGameDebuger.debug.xcconfig"; sourceTree = "<group>"; };
+		B22F671E0AF91D92EC19FA3D /* Pods-LuaGameDebugerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebugerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebugerUITests/Pods-LuaGameDebugerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B7001D24C0FEC743F9EFE31A /* Pods_LuaGameDebugerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuaGameDebugerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2B3D429B228E06723A1E7F4 /* Pods_LuaGameDebugerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LuaGameDebugerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE6AD71755F782791AEA324F /* Pods-LuaGameDebuger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebuger.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebuger/Pods-LuaGameDebuger.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		42C56F2D228315AF005B0C14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				187AD51F5580BCB352642F52 /* Pods_LuaGameDebuger.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F3F228315B1005B0C14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03D9CD85200463BBFA5EDBE5 /* Pods_LuaGameDebugerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F4A228315B1005B0C14 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				176260397B616E903DF800E6 /* Pods_LuaGameDebugerUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		42C56F27228315AF005B0C14 = {
+			isa = PBXGroup;
+			children = (
+				42C56F32228315AF005B0C14 /* LuaGameDebuger */,
+				42C56F45228315B1005B0C14 /* LuaGameDebugerTests */,
+				42C56F50228315B1005B0C14 /* LuaGameDebugerUITests */,
+				42C56F31228315AF005B0C14 /* Products */,
+				F9283537ADBAEF0448047312 /* Pods */,
+				A0D879510D377305788E319C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		42C56F31228315AF005B0C14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42C56F30228315AF005B0C14 /* LuaGameDebuger.app */,
+				42C56F42228315B1005B0C14 /* LuaGameDebugerTests.xctest */,
+				42C56F4D228315B1005B0C14 /* LuaGameDebugerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		42C56F32228315AF005B0C14 /* LuaGameDebuger */ = {
+			isa = PBXGroup;
+			children = (
+				42C56F33228315AF005B0C14 /* AppDelegate.swift */,
+				42C56F35228315AF005B0C14 /* MainViewController.swift */,
+				42047C232286CED5003D8849 /* Server.swift */,
+				422B08732287307200B5CFCA /* Data+md5.swift */,
+				42C56F37228315B1005B0C14 /* Assets.xcassets */,
+				42C56F39228315B1005B0C14 /* Main.storyboard */,
+				42C56F3C228315B1005B0C14 /* Info.plist */,
+				42C56F3D228315B1005B0C14 /* LuaGameDebuger.entitlements */,
+			);
+			path = LuaGameDebuger;
+			sourceTree = "<group>";
+		};
+		42C56F45228315B1005B0C14 /* LuaGameDebugerTests */ = {
+			isa = PBXGroup;
+			children = (
+				42C56F46228315B1005B0C14 /* LuaGameDebugerTests.swift */,
+				42C56F48228315B1005B0C14 /* Info.plist */,
+			);
+			path = LuaGameDebugerTests;
+			sourceTree = "<group>";
+		};
+		42C56F50228315B1005B0C14 /* LuaGameDebugerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				42C56F51228315B1005B0C14 /* LuaGameDebugerUITests.swift */,
+				42C56F53228315B1005B0C14 /* Info.plist */,
+			);
+			path = LuaGameDebugerUITests;
+			sourceTree = "<group>";
+		};
+		A0D879510D377305788E319C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21BB26C33A3ADFF5DA55DE73 /* Pods_LuaGameDebuger.framework */,
+				C2B3D429B228E06723A1E7F4 /* Pods_LuaGameDebugerTests.framework */,
+				B7001D24C0FEC743F9EFE31A /* Pods_LuaGameDebugerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9283537ADBAEF0448047312 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80C6CF85936E6EB9DEBD192C /* Pods-LuaGameDebuger.debug.xcconfig */,
+				DE6AD71755F782791AEA324F /* Pods-LuaGameDebuger.release.xcconfig */,
+				1297D80769B211231D7F501F /* Pods-LuaGameDebugerTests.debug.xcconfig */,
+				1E761BC68C805B93100397F1 /* Pods-LuaGameDebugerTests.release.xcconfig */,
+				B22F671E0AF91D92EC19FA3D /* Pods-LuaGameDebugerUITests.debug.xcconfig */,
+				3D616A4FDF634FEB52591486 /* Pods-LuaGameDebugerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42C56F2F228315AF005B0C14 /* LuaGameDebuger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42C56F56228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebuger" */;
+			buildPhases = (
+				2E22625DEBB5F17EAA281356 /* [CP] Check Pods Manifest.lock */,
+				42C56F2C228315AF005B0C14 /* Sources */,
+				42C56F2D228315AF005B0C14 /* Frameworks */,
+				42C56F2E228315AF005B0C14 /* Resources */,
+				FA67D80433B95F7ABE27DC35 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LuaGameDebuger;
+			productName = LuaGameDebuger;
+			productReference = 42C56F30228315AF005B0C14 /* LuaGameDebuger.app */;
+			productType = "com.apple.product-type.application";
+		};
+		42C56F41228315B1005B0C14 /* LuaGameDebugerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42C56F59228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebugerTests" */;
+			buildPhases = (
+				48BF631B664B21B6FB85CFF4 /* [CP] Check Pods Manifest.lock */,
+				42C56F3E228315B1005B0C14 /* Sources */,
+				42C56F3F228315B1005B0C14 /* Frameworks */,
+				42C56F40228315B1005B0C14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42C56F44228315B1005B0C14 /* PBXTargetDependency */,
+			);
+			name = LuaGameDebugerTests;
+			productName = LuaGameDebugerTests;
+			productReference = 42C56F42228315B1005B0C14 /* LuaGameDebugerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		42C56F4C228315B1005B0C14 /* LuaGameDebugerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42C56F5C228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebugerUITests" */;
+			buildPhases = (
+				C30BF4521FC0AFB6AE349770 /* [CP] Check Pods Manifest.lock */,
+				42C56F49228315B1005B0C14 /* Sources */,
+				42C56F4A228315B1005B0C14 /* Frameworks */,
+				42C56F4B228315B1005B0C14 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42C56F4F228315B1005B0C14 /* PBXTargetDependency */,
+			);
+			name = LuaGameDebugerUITests;
+			productName = LuaGameDebugerUITests;
+			productReference = 42C56F4D228315B1005B0C14 /* LuaGameDebugerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42C56F28228315AF005B0C14 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = yuanchao;
+				TargetAttributes = {
+					42C56F2F228315AF005B0C14 = {
+						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					42C56F41228315B1005B0C14 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 42C56F2F228315AF005B0C14;
+					};
+					42C56F4C228315B1005B0C14 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 42C56F2F228315AF005B0C14;
+					};
+				};
+			};
+			buildConfigurationList = 42C56F2B228315AF005B0C14 /* Build configuration list for PBXProject "LuaGameDebuger" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 42C56F27228315AF005B0C14;
+			productRefGroup = 42C56F31228315AF005B0C14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42C56F2F228315AF005B0C14 /* LuaGameDebuger */,
+				42C56F41228315B1005B0C14 /* LuaGameDebugerTests */,
+				42C56F4C228315B1005B0C14 /* LuaGameDebugerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		42C56F2E228315AF005B0C14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C56F38228315B1005B0C14 /* Assets.xcassets in Resources */,
+				42C56F3B228315B1005B0C14 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F40228315B1005B0C14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F4B228315B1005B0C14 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2E22625DEBB5F17EAA281356 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuaGameDebuger-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48BF631B664B21B6FB85CFF4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuaGameDebugerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C30BF4521FC0AFB6AE349770 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LuaGameDebugerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA67D80433B95F7ABE27DC35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LuaGameDebuger/Pods-LuaGameDebuger-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LuaGameDebuger/Pods-LuaGameDebuger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		42C56F2C228315AF005B0C14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */,
+				42047C242286CED5003D8849 /* Server.swift in Sources */,
+				42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */,
+				422B08742287307200B5CFCA /* Data+md5.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F3E228315B1005B0C14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C56F47228315B1005B0C14 /* LuaGameDebugerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42C56F49228315B1005B0C14 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42C56F52228315B1005B0C14 /* LuaGameDebugerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42C56F44228315B1005B0C14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42C56F2F228315AF005B0C14 /* LuaGameDebuger */;
+			targetProxy = 42C56F43228315B1005B0C14 /* PBXContainerItemProxy */;
+		};
+		42C56F4F228315B1005B0C14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42C56F2F228315AF005B0C14 /* LuaGameDebuger */;
+			targetProxy = 42C56F4E228315B1005B0C14 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42C56F39228315B1005B0C14 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42C56F3A228315B1005B0C14 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		42C56F54228315B1005B0C14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		42C56F55228315B1005B0C14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		42C56F57228315B1005B0C14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80C6CF85936E6EB9DEBD192C /* Pods-LuaGameDebuger.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		42C56F58228315B1005B0C14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE6AD71755F782791AEA324F /* Pods-LuaGameDebuger.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		42C56F5A228315B1005B0C14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1297D80769B211231D7F501F /* Pods-LuaGameDebugerTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebugerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuaGameDebuger.app/Contents/MacOS/LuaGameDebuger";
+			};
+			name = Debug;
+		};
+		42C56F5B228315B1005B0C14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E761BC68C805B93100397F1 /* Pods-LuaGameDebugerTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebugerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LuaGameDebuger.app/Contents/MacOS/LuaGameDebuger";
+			};
+			name = Release;
+		};
+		42C56F5D228315B1005B0C14 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B22F671E0AF91D92EC19FA3D /* Pods-LuaGameDebugerUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebugerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = LuaGameDebuger;
+			};
+			name = Debug;
+		};
+		42C56F5E228315B1005B0C14 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D616A4FDF634FEB52591486 /* Pods-LuaGameDebugerUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LuaGameDebugerUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_TARGET_NAME = LuaGameDebuger;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		42C56F2B228315AF005B0C14 /* Build configuration list for PBXProject "LuaGameDebuger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42C56F54228315B1005B0C14 /* Debug */,
+				42C56F55228315B1005B0C14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42C56F56228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebuger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42C56F57228315B1005B0C14 /* Debug */,
+				42C56F58228315B1005B0C14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42C56F59228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebugerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42C56F5A228315B1005B0C14 /* Debug */,
+				42C56F5B228315B1005B0C14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42C56F5C228315B1005B0C14 /* Build configuration list for PBXNativeTarget "LuaGameDebugerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42C56F5D228315B1005B0C14 /* Debug */,
+				42C56F5E228315B1005B0C14 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42C56F28228315AF005B0C14 /* Project object */;
+}
