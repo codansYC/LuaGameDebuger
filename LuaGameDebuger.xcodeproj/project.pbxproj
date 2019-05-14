@@ -12,6 +12,8 @@
 		187AD51F5580BCB352642F52 /* Pods_LuaGameDebuger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21BB26C33A3ADFF5DA55DE73 /* Pods_LuaGameDebuger.framework */; };
 		42047C242286CED5003D8849 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42047C232286CED5003D8849 /* Server.swift */; };
 		422B08742287307200B5CFCA /* Data+md5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B08732287307200B5CFCA /* Data+md5.swift */; };
+		422B0876228A2D9200B5CFCA /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B0875228A2D9200B5CFCA /* FileInfo.swift */; };
+		422B0878228A2E1100B5CFCA /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B0877228A2E1100B5CFCA /* FileHandler.swift */; };
 		42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F33228315AF005B0C14 /* AppDelegate.swift */; };
 		42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F35228315AF005B0C14 /* MainViewController.swift */; };
 		42C56F38228315B1005B0C14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C56F37228315B1005B0C14 /* Assets.xcassets */; };
@@ -44,6 +46,9 @@
 		3D616A4FDF634FEB52591486 /* Pods-LuaGameDebugerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LuaGameDebugerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LuaGameDebugerUITests/Pods-LuaGameDebugerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		42047C232286CED5003D8849 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		422B08732287307200B5CFCA /* Data+md5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+md5.swift"; sourceTree = "<group>"; };
+		422B0875228A2D9200B5CFCA /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
+		422B0877228A2E1100B5CFCA /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
+		422B0879228A322D00B5CFCA /* LuaGameDebuger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuaGameDebuger-Bridging-Header.h"; sourceTree = "<group>"; };
 		42C56F30228315AF005B0C14 /* LuaGameDebuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaGameDebuger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C56F33228315AF005B0C14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42C56F35228315AF005B0C14 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +130,9 @@
 				42C56F39228315B1005B0C14 /* Main.storyboard */,
 				42C56F3C228315B1005B0C14 /* Info.plist */,
 				42C56F3D228315B1005B0C14 /* LuaGameDebuger.entitlements */,
+				422B0875228A2D9200B5CFCA /* FileInfo.swift */,
+				422B0877228A2E1100B5CFCA /* FileHandler.swift */,
+				422B0879228A322D00B5CFCA /* LuaGameDebuger-Bridging-Header.h */,
 			);
 			path = LuaGameDebuger;
 			sourceTree = "<group>";
@@ -242,6 +250,7 @@
 				TargetAttributes = {
 					42C56F2F228315AF005B0C14 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -368,11 +377,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-LuaGameDebuger/Pods-LuaGameDebuger-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -386,10 +397,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				422B0878228A2E1100B5CFCA /* FileHandler.swift in Sources */,
 				42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */,
 				42047C242286CED5003D8849 /* Server.swift in Sources */,
 				42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */,
 				422B08742287307200B5CFCA /* Data+md5.swift in Sources */,
+				422B0876228A2D9200B5CFCA /* FileInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +569,7 @@
 			baseConfigurationReference = 80C6CF85936E6EB9DEBD192C /* Pods-LuaGameDebuger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
@@ -565,6 +579,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LuaGameDebuger/LuaGameDebuger-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -574,6 +590,7 @@
 			baseConfigurationReference = DE6AD71755F782791AEA324F /* Pods-LuaGameDebuger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
@@ -583,6 +600,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LuaGameDebuger/LuaGameDebuger-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
