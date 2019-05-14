@@ -19,6 +19,10 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var codeImageView: NSImageView!
     
+    @IBOutlet weak var logView: LogView!
+    
+    @IBOutlet weak var settingView: SettingView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +30,8 @@ class MainViewController: NSViewController {
         
         Server.shared.start()
         
-        let path = "/Users/yuanchao/Desktop/袁超-ios开发工程师.pdf"
+        let path = ""
     
-        
         let url = URL.init(fileURLWithPath: path)
         do {
             let data = try Data.init(contentsOf: url)
@@ -39,13 +42,28 @@ class MainViewController: NSViewController {
     }
 
     @IBAction func showCode(_ sender: Any) {
-        self.codeImageView.isHidden = false;
+        self.codeImageView.isHidden = false
+        self.logView.isHidden = true
+        self.settingView.isHidden = true
+        
         self.createCode()
     }
     
     @IBAction func showLog(_ sender: Any) {
+        self.codeImageView.isHidden = true
+        self.logView.isHidden = false
+        self.settingView.isHidden = true
     }
     
+    @IBAction func setting(_ sender: Any) {
+        self.codeImageView.isHidden = true
+        self.logView.isHidden = true
+        self.settingView.isHidden = false
+    }
+    
+    @IBAction func archive(_ sender: Any) {
+        Server.shared.sendArchiveMsg()
+    }
     
     override var representedObject: Any? {
         didSet {

@@ -9,6 +9,11 @@
 import Cocoa
 import CocoaAsyncSocket
 
+enum Command: Int {
+    case archive = 100
+    case log = 101
+}
+
 class Server: NSObject, GCDAsyncSocketDelegate {
     
     let defaultPort: UInt16 = 8090
@@ -32,6 +37,15 @@ class Server: NSObject, GCDAsyncSocketDelegate {
         }
     }
     
+    func sendMsg(_ msg:String) {
+        guard let data = msg.data(using: String.Encoding.utf8) else {
+            return
+        }
+        
+        self.clientSocketArr.forEach({ $0.write(data, withTimeout: -1, tag: 100) })
+        
+    }
+    
     // GCDAsyncSocketDelegate
     func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         print("didAcceptNewSocket")
@@ -41,15 +55,37 @@ class Server: NSObject, GCDAsyncSocketDelegate {
     
     func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
         print("did write")
-        sock.readData(withTimeout: -1, tag: 100)
+        sock.readData(withTimeout: -1, tag: tag)
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let info = String.init(data: data, encoding: String.Encoding.utf8)
         
         print("did read:\(String(describing: info)))")
+        sock.readData(withTimeout: -1, tag: tag)
     }
     
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        if let index = self.clientSocketArr.firstIndex(of: sock) {
+            self.clientSocketArr.remove(at: index)
+        }
+    }
     
+}
+
+extension Server {
+    func sendArchiveMsg() {
+        let msgModel = IMMsgModel()
+        msgModel.eventId = Command.archive.rawValue
+        msgModel.data = "111"
+        let msg = msgModel.encode() ?? ""
+        self.sendMsg(msg)
+    }
+}
+
+class IMMsgModel: BaseCodable {
+    typealias E = IMMsgModel
     
+    var eventId: Int = 0
+    var data: String = ""
 }

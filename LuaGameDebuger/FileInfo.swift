@@ -8,16 +8,25 @@
 
 import Cocoa
 
+protocol BaseCodable: Codable {
+    associatedtype E
+    
+}
+
+
 class FileInfo: Codable {
-    var filePath: String?
+    var filePath: String? // 相对路径
     var md5: String?
 }
 
-extension FileInfo {
-    class func decode(json: String) -> Self? {
+extension BaseCodable {
+    static func decode(json: String) -> E? {
         let decoder = JSONDecoder()
         if let data = json.data(using: String.Encoding.utf8) {
-            return try? decoder.decode(self, from: data);
+            if let o = try? decoder.decode(Self.self, from: data) {
+                return o as? E
+            }
+            return nil
         }
         return nil
     }
@@ -32,7 +41,7 @@ extension FileInfo {
     }
 }
 
-extension Array where Element: FileInfo {
+extension Array where Element: Codable {
     static func decode(json: String) -> [Element]? {
         let decoder = JSONDecoder()
         if let data = json.data(using: String.Encoding.utf8) {
