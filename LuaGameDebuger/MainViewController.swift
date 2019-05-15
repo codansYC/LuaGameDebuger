@@ -25,7 +25,7 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         self.containerView.wantsLayer = true; self.containerView.layer?.backgroundColor = NSColor.white.cgColor;
         
         Server.shared.start()

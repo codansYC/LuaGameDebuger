@@ -39,15 +39,17 @@
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>YYModel.xcscheme</key>
+		<key>SSZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>YYModel.xcscheme_^#shared#^_</key>
+		<key>YYModel.xcscheme</key>
 		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>

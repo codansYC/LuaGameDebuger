@@ -889,7 +889,7 @@
                                             <outlet property="tableView" destination="kdt-Rr-xSx" id="VG8-ty-d7G"/>
                                         </connections>
                                     </customView>
-                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WgH-fJ-gva" customClass="SettingView" customModule="LuaGameDebuger" customModuleProvider="target">
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="WgH-fJ-gva" customClass="SettingView" customModule="LuaGameDebuger" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="352" height="230"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cJP-jc-edp">
@@ -930,38 +930,36 @@
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b2O-px-c6H">
-                                                <rect key="frame" x="129" y="23" width="94" height="39"/>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aj3-sC-6Yj">
+                                                <rect key="frame" x="129" y="23" width="94" height="33"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="NdC-vt-bWz"/>
+                                                    <constraint firstAttribute="height" constant="22" id="Yex-Ic-eNe"/>
                                                 </constraints>
-                                                <buttonCell key="cell" type="push" title="保存设置" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="atP-kb-c6A">
+                                                <buttonCell key="cell" type="push" title="保存设置" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tkD-F5-gTy">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" usesAppearanceFont="YES"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="showLog:" target="WgH-fJ-gva" id="eBW-LU-2RQ"/>
-                                                    <binding destination="61d-iW-VJ0" name="argument" keyPath="values.saveBtn" id="6Z3-7x-v2e"/>
+                                                    <action selector="saveSetting:" target="WgH-fJ-gva" id="iiz-Mq-nwg"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="pO9-1d-eBs" firstAttribute="leading" secondItem="cJP-jc-edp" secondAttribute="trailing" constant="15" id="1jz-dm-i7i"/>
                                             <constraint firstItem="jQw-a1-pcX" firstAttribute="top" secondItem="cJP-jc-edp" secondAttribute="bottom" constant="30" id="8VG-yn-6dJ"/>
-                                            <constraint firstItem="b2O-px-c6H" firstAttribute="centerX" secondItem="WgH-fJ-gva" secondAttribute="centerX" id="G2V-MS-67o"/>
                                             <constraint firstAttribute="trailing" secondItem="pO9-1d-eBs" secondAttribute="trailing" constant="15" id="IKo-b5-TfI"/>
+                                            <constraint firstAttribute="bottom" secondItem="aj3-sC-6Yj" secondAttribute="bottom" constant="30" id="IMR-GC-a0q"/>
                                             <constraint firstItem="fUd-sa-CIf" firstAttribute="leading" secondItem="jQw-a1-pcX" secondAttribute="trailing" constant="15" id="IuR-ff-b8D"/>
-                                            <constraint firstAttribute="bottom" secondItem="b2O-px-c6H" secondAttribute="bottom" constant="30" id="N5L-Ks-JQZ"/>
                                             <constraint firstAttribute="trailing" secondItem="fUd-sa-CIf" secondAttribute="trailing" constant="15" id="S4j-RV-RwM"/>
                                             <constraint firstItem="cJP-jc-edp" firstAttribute="leading" secondItem="WgH-fJ-gva" secondAttribute="leading" constant="15" id="Si5-cc-fDu"/>
                                             <constraint firstItem="cJP-jc-edp" firstAttribute="top" secondItem="WgH-fJ-gva" secondAttribute="top" constant="15" id="WeU-IX-a1D"/>
                                             <constraint firstItem="fUd-sa-CIf" firstAttribute="centerY" secondItem="jQw-a1-pcX" secondAttribute="centerY" id="l5e-3u-axH"/>
                                             <constraint firstItem="pO9-1d-eBs" firstAttribute="centerY" secondItem="cJP-jc-edp" secondAttribute="centerY" id="sSv-o0-lLj"/>
+                                            <constraint firstItem="aj3-sC-6Yj" firstAttribute="centerX" secondItem="WgH-fJ-gva" secondAttribute="centerX" id="sr0-za-Hna"/>
                                             <constraint firstItem="jQw-a1-pcX" firstAttribute="leading" secondItem="WgH-fJ-gva" secondAttribute="leading" constant="15" id="yhg-k1-jPK"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="codingDirTf" destination="pO9-1d-eBs" id="5wH-y1-so1"/>
-                                            <outlet property="saveBtn" destination="b2O-px-c6H" id="Ygh-SW-2IK"/>
                                             <outlet property="siteDirTf" destination="fUd-sa-CIf" id="UhK-jG-aX8"/>
                                         </connections>
                                     </customView>
@@ -1024,7 +1022,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="61d-iW-VJ0"/>
             </objects>
-            <point key="canvasLocation" x="-4072" y="96"/>
+            <point key="canvasLocation" x="-3948" y="94"/>
         </scene>
     </scenes>
 </document>

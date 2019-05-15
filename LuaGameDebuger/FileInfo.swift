@@ -20,9 +20,19 @@ class FileInfo: Codable {
 }
 
 extension BaseCodable {
-    static func decode(json: String) -> E? {
-        let decoder = JSONDecoder()
-        if let data = json.data(using: String.Encoding.utf8) {
+    static func decode(json: Any) -> E? {
+        let jsonData: Data?
+        switch json {
+        case is Data:
+            jsonData = json as? Data
+        case is String:
+            jsonData = (json as? String)?.data(using: String.Encoding.utf8)
+        default:
+            jsonData = nil
+        }
+    
+        if let data = jsonData {
+            let decoder = JSONDecoder()
             if let o = try? decoder.decode(Self.self, from: data) {
                 return o as? E
             }

@@ -9,6 +9,7 @@ target 'LuaGameDebuger' do
   pod 'CocoaAsyncSocket'
   pod 'CryptoSwift'
   pod 'YYModel'
+  pod 'SSZipArchive'
   
   target 'LuaGameDebugerTests' do
     inherit! :search_paths

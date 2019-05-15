@@ -12,6 +12,9 @@ import CocoaAsyncSocket
 enum Command: Int {
     case archive = 100
     case log = 101
+    case allFile = 102
+    case requestUrl = 103
+    case patchZipUrl = 104
 }
 
 class Server: NSObject, GCDAsyncSocketDelegate {
@@ -59,9 +62,8 @@ class Server: NSObject, GCDAsyncSocketDelegate {
     }
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let info = String.init(data: data, encoding: String.Encoding.utf8)
-        
-        print("did read:\(String(describing: info)))")
+        print("did read")
+        self.receivedData(data)
         sock.readData(withTimeout: -1, tag: tag)
     }
     
@@ -77,9 +79,40 @@ extension Server {
     func sendArchiveMsg() {
         let msgModel = IMMsgModel()
         msgModel.eventId = Command.archive.rawValue
-        msgModel.data = "111"
+        var dataDict = Dictionary<String, String>()
+        dataDict["resourceId"] = "123456"
+        dataDict["resourceUrl"] = "http://"
+        let data = try! JSONSerialization.data(withJSONObject: dataDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+        msgModel.data = String(data: data, encoding: String.Encoding.utf8) ?? ""
         let msg = msgModel.encode() ?? ""
         self.sendMsg(msg)
+    }
+    
+    func sendPatchZipUrlMsg() {
+        let msgModel = IMMsgModel()
+        msgModel.eventId = Command.patchZipUrl.rawValue
+        var dataDict = Dictionary<String, String>()
+        dataDict["resourceId"] = "123456"
+        dataDict["resourceUrl"] = "http://"
+        let data = try! JSONSerialization.data(withJSONObject: dataDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+        msgModel.data = String(data: data, encoding: String.Encoding.utf8) ?? ""
+        let msg = msgModel.encode() ?? ""
+        self.sendMsg(msg)
+    }
+    
+    func receivedData(_ data:Data) {
+        guard let msgModel = IMMsgModel.decode(json: data), let command = Command(rawValue: msgModel.eventId) else {
+            return
+        }
+        
+        switch command  {
+        case .allFile:
+            if FileHandler.shared.createPatchZip(msgModel.data) {
+                self.sendPatchZipUrlMsg()
+            }
+        default:
+            break
+        }
     }
 }
 

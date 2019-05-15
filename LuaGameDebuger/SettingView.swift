@@ -19,6 +19,8 @@ class SettingView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.wantsLayer = true
+        self.siteDirTf.stringValue = FileHandler.shared.siteDir
+        self.codingDirTf.stringValue = FileHandler.shared.codingDir
     }
     
     @IBAction func saveSetting(_ sender: Any) {
