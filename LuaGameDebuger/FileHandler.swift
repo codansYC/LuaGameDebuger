@@ -28,15 +28,7 @@ class FileHandler {
     }
     
     func createPatchZip(_ allFileJson: String) -> Bool {
-        let projectDir = "" // 文件根目录
-        
-        guard let fileInfoArr = [FileInfo].decode(json: allFileJson), !fileInfoArr.isEmpty else {
-            return self.zip()
-        }
-        
-        // all.json
-        // patch.json
-        
+        let fileInfoArr = [FileInfo].decode(json: allFileJson) ?? []
         
         var removeFilePathArr = [String]()
         var reserveFileInfoArr = [FileInfo]()
@@ -44,7 +36,7 @@ class FileHandler {
         
         for fileInfo in fileInfoArr {
             let filePath = fileInfo.filePath!
-            let file = projectDir.appendingPathComponent(filePath)
+            let file = self.codingDir.appendingPathComponent(filePath)
             if FileManager.default.fileExists(atPath: file) {
                 if md5(file) == fileInfo.md5 {
                     reserveFileInfoArr.append(fileInfo)
@@ -54,10 +46,10 @@ class FileHandler {
             }
         }
         
-        let files = self.files(dir: projectDir)
+        let files = self.files(dir: self.codingDir)
         
         for file in files {
-            let reletivePath = file.replacingOccurrences(of: projectDir + "/", with: "")
+            let reletivePath = file.replacingOccurrences(of: self.codingDir + "/", with: "")
             if !reserveFileInfoArr.contains(where: { $0.filePath == reletivePath }) {
                 let info = FileInfo()
                 info.filePath = reletivePath
@@ -66,8 +58,9 @@ class FileHandler {
             }
         }
         
+        
         // 拷贝patchFileInfoArr里的文件 zip
-        let patchDirPath = self.copyFiles(dir: projectDir, patchFileInfoArr: patchFileInfoArr)
+        let patchDirPath = self.copyFiles(dir: self.codingDir, patchFileInfoArr: patchFileInfoArr)
         // 将all.json保存进去
         let allJson = (patchFileInfoArr + reserveFileInfoArr).encode() ?? "[]"
         let allJsonFile = patchDirPath.appendingPathComponent("all.json")
@@ -78,9 +71,8 @@ class FileHandler {
             let removeJsonFile = patchDirPath.appendingPathComponent("remove.json")
             FileManager.default.createFile(atPath: removeJsonFile, contents: removeData, attributes: nil)
         }
-        // 压缩patchDirPath
-        // 将压缩后的文件夹保存至服务器目录下
-        return self.zip()
+        // 压缩patchDirPath,并将压缩后的文件夹保存至服务器目录下
+        return self.zip(patchDirPath)
     }
     
     func files(dir: String) -> [String] {
@@ -120,13 +112,13 @@ class FileHandler {
         return destDir
     }
     
-    func zip() -> Bool {
+    func zip(_ dir: String) -> Bool {
         if self.codingDir.isEmpty || self.siteDir.isEmpty {
             print("项目目录和服务器目录不能为空")
             return false
         }
         let zipPath = self.siteDir.appendingPathComponent(self.codingDir.lastPathComponent()) + ".zip"
-        return SSZipArchive.createZipFile(atPath: zipPath, withContentsOfDirectory: self.codingDir)
+        return SSZipArchive.createZipFile(atPath: zipPath, withContentsOfDirectory: dir)
     }
 }
 

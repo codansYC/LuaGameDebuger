@@ -15,6 +15,7 @@ enum Command: Int {
     case allFile = 102
     case requestUrl = 103
     case patchZipUrl = 104
+    case reload = 105
 }
 
 class Server: NSObject, GCDAsyncSocketDelegate {
