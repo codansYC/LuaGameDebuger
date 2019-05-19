@@ -18,13 +18,36 @@ class FileHandler {
     }
     var siteDir = "" {
         didSet {
-            UserDefaults.standard.set(siteDir, forKey: "siteDir")
+            
+        }
+    }
+    
+    var userName = ""
+    
+    var isPatch = false {
+        didSet {
+
+        }
+    }
+    
+    var gameInitInfo = "" {
+        didSet {
+            UserDefaults.standard.set(gameInitInfo, forKey: "gameInitInfo")
         }
     }
     
     private init() {
         self.codingDir = UserDefaults.standard.string(forKey: "codingDir") ?? ""
-        self.siteDir = UserDefaults.standard.string(forKey: "siteDir") ?? ""
+        self.siteDir = findSitesDir() ?? ""
+        
+        let arr = self.siteDir.split(separator: "/")
+        if arr.count == 3 {
+            self.userName = String(arr[1])
+        }
+    }
+    
+    func createZip() -> Bool {
+        return zip(self.codingDir)
     }
     
     func createPatchZip(_ allFileJson: String) -> Bool {
@@ -46,18 +69,17 @@ class FileHandler {
             }
         }
         
+        // 相对self.codingDir的路径
         let files = self.files(dir: self.codingDir)
         
         for file in files {
-            let reletivePath = file.replacingOccurrences(of: self.codingDir + "/", with: "")
-            if !reserveFileInfoArr.contains(where: { $0.filePath == reletivePath }) {
+            if !reserveFileInfoArr.contains(where: { $0.filePath == file }) {
                 let info = FileInfo()
-                info.filePath = reletivePath
-                info.md5 = md5(file)
+                info.filePath = file
+                info.md5 = md5(self.codingDir.appendingPathComponent(file))
                 patchFileInfoArr.append(info)
             }
         }
-        
         
         // 拷贝patchFileInfoArr里的文件 zip
         let patchDirPath = self.copyFiles(dir: self.codingDir, patchFileInfoArr: patchFileInfoArr)
@@ -72,24 +94,29 @@ class FileHandler {
             FileManager.default.createFile(atPath: removeJsonFile, contents: removeData, attributes: nil)
         }
         // 压缩patchDirPath,并将压缩后的文件夹保存至服务器目录下
+        
+        defer {
+            try? FileManager.default.removeItem(atPath: patchDirPath)
+        }
+        
         return self.zip(patchDirPath)
     }
     
     func files(dir: String) -> [String] {
-        guard let pathArr = try? FileManager.default.contentsOfDirectory(atPath: dir) else {
+        guard let pathArr = try? FileManager.default.subpathsOfDirectory(atPath: dir) else {
             return []
         }
         
         let files = pathArr.filter { (path) -> Bool in
             var isDir: ObjCBool = true
-            return FileManager.default.fileExists(atPath: path, isDirectory: &isDir) && !isDir.boolValue
+            return FileManager.default.fileExists(atPath: dir.appendingPathComponent(path), isDirectory: &isDir) && !isDir.boolValue
         }
         
         return files
     }
     
     func md5(_ file: String) -> String? {
-        guard let url = URL.init(string: file), let data = try? Data.init(contentsOf: url) else {
+        guard let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: file)) else {
             return nil
         }
         
@@ -118,7 +145,28 @@ class FileHandler {
             return false
         }
         let zipPath = self.siteDir.appendingPathComponent(self.codingDir.lastPathComponent()) + ".zip"
+        try? FileManager.default.removeItem(atPath: zipPath)
         return SSZipArchive.createZipFile(atPath: zipPath, withContentsOfDirectory: dir)
+    }
+    
+    func findSitesDir() -> String? {
+        let ursersDir = "/Users"
+        guard let files = try? FileManager.default.contentsOfDirectory(atPath: ursersDir) else {
+            return nil
+        }
+        
+        for file in files {
+            let path = ursersDir.appendingPathComponent(file)
+            if let subfiles = try? FileManager.default.contentsOfDirectory(atPath: path) {
+                for subfile in subfiles {
+                    if subfile == "Sites" {
+                        return path.appendingPathComponent(subfile)
+                    }
+                }
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -141,7 +189,7 @@ extension String {
     
     func lastPathComponent() -> String {
         let components = self.components(separatedBy: "/")
-        return components.last ?? self
+        return components.last ?? ""
     }
 }
 

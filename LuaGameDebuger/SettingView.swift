@@ -15,12 +15,16 @@ class SettingView: NSView {
     @IBOutlet weak var codingDirTf: NSTextField!
     
     @IBOutlet weak var saveBtn: NSButton!
+    
+    @IBOutlet weak var patchCheckBox: NSButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.wantsLayer = true
         self.siteDirTf.stringValue = FileHandler.shared.siteDir
         self.codingDirTf.stringValue = FileHandler.shared.codingDir
+        
+        self.patchCheckBox.state = NSControl.StateValue.off
     }
     
     @IBAction func saveSetting(_ sender: Any) {
@@ -34,6 +38,8 @@ class SettingView: NSView {
         if FileManager.default.fileExists(atPath: siteDir, isDirectory: &isDir) && isDir.boolValue {
             FileHandler.shared.siteDir = siteDir
         }
+        
+        FileHandler.shared.isPatch = self.patchCheckBox.state == NSControl.StateValue.on
     }
     
 }

@@ -10,21 +10,30 @@ import Cocoa
 import CocoaAsyncSocket
 
 enum Command: Int {
-    case archive = 100
-    case log = 101
-    case allFile = 102
-    case requestUrl = 103
-    case patchZipUrl = 104
-    case reload = 105
+    case startGame = 100
+    case closeGame = 101
+    case archive = 102
+    case log = 103
+    case allFile = 104
+    case requestUrl = 105
+    case patchZipUrl = 106
+    
 }
 
 class Server: NSObject, GCDAsyncSocketDelegate {
     
+    var ip = ""
     let defaultPort: UInt16 = 8090
     
     var clientSocketArr = [GCDAsyncSocket]()
     var rwQueue = DispatchQueue(label: "com.server.rw")
     var socket: GCDAsyncSocket!
+    
+    var hasClientConnected: Bool {
+        return !clientSocketArr.isEmpty
+    }
+    
+    var needStart = false
     
     static let shared = Server()
     
@@ -94,12 +103,33 @@ extension Server {
         msgModel.eventId = Command.patchZipUrl.rawValue
         var dataDict = Dictionary<String, String>()
         dataDict["resourceId"] = "123456"
-        dataDict["resourceUrl"] = "http://"
+        dataDict["resourceUrl"] = "http://192.168.199.129/~yuanchao/Koi_2.zip"
         let data = try! JSONSerialization.data(withJSONObject: dataDict, options: JSONSerialization.WritingOptions.prettyPrinted)
         msgModel.data = String(data: data, encoding: String.Encoding.utf8) ?? ""
         let msg = msgModel.encode() ?? ""
         self.sendMsg(msg)
     }
+    
+    func sendStartMsg() {
+        let msgModel = IMMsgModel()
+        msgModel.eventId = Command.startGame.rawValue
+        var dataDict = Dictionary<String, String>()
+        dataDict["resourceId"] = "123456"
+        dataDict["resourceUrl"] = "http://192.168.199.129/~yuanchao/Koi_2.zip"
+        dataDict["gameInitInfo"] = FileHandler.shared.gameInitInfo
+        let data = try! JSONSerialization.data(withJSONObject: dataDict, options: JSONSerialization.WritingOptions.prettyPrinted)
+        msgModel.data = String(data: data, encoding: String.Encoding.utf8) ?? ""
+        let msg = msgModel.encode() ?? ""
+        self.sendMsg(msg)
+    }
+    
+    func sendCloseMsg() {
+        let msgModel = IMMsgModel()
+        msgModel.eventId = Command.closeGame.rawValue
+        let msg = msgModel.encode() ?? ""
+        self.sendMsg(msg)
+    }
+    
     
     func receivedData(_ data:Data) {
         guard let msgModel = IMMsgModel.decode(json: data), let command = Command(rawValue: msgModel.eventId) else {
@@ -109,12 +139,21 @@ extension Server {
         switch command  {
         case .allFile:
             if FileHandler.shared.createPatchZip(msgModel.data) {
-                self.sendPatchZipUrlMsg()
+                if self.needStart {
+                    self.needStart = false
+                    self.sendStartMsg()
+                } else {
+                    self.sendPatchZipUrlMsg()
+                }
             }
         default:
             break
         }
     }
+}
+
+extension Server {
+    
 }
 
 class IMMsgModel: BaseCodable {

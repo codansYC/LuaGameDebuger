@@ -23,28 +23,23 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var settingView: SettingView!
     
+    @IBOutlet weak var gameInfoView: GameInfoView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.containerView.wantsLayer = true; self.containerView.layer?.backgroundColor = NSColor.white.cgColor;
+        self.containerView.wantsLayer = true;
+        self.containerView.layer?.backgroundColor = NSColor.white.cgColor;
         
-        Server.shared.start()
+        Dispatcher.shared.start()
         
-        let path = ""
-    
-        let url = URL.init(fileURLWithPath: path)
-        do {
-            let data = try Data.init(contentsOf: url)
-            print(data.md5().toHexString())
-        } catch {
-            print(error)
-        }
     }
 
     @IBAction func showCode(_ sender: Any) {
         self.codeImageView.isHidden = false
         self.logView.isHidden = true
         self.settingView.isHidden = true
+        self.gameInfoView.isHidden = true
         
         self.createCode()
     }
@@ -53,16 +48,25 @@ class MainViewController: NSViewController {
         self.codeImageView.isHidden = true
         self.logView.isHidden = false
         self.settingView.isHidden = true
+        self.gameInfoView.isHidden = true
     }
     
     @IBAction func setting(_ sender: Any) {
         self.codeImageView.isHidden = true
         self.logView.isHidden = true
         self.settingView.isHidden = false
+        self.gameInfoView.isHidden = true
     }
     
     @IBAction func archive(_ sender: Any) {
         Server.shared.sendArchiveMsg()
+    }
+    
+    @IBAction func startGame(_ sender: Any) {
+        self.codeImageView.isHidden = true
+        self.logView.isHidden = true
+        self.settingView.isHidden = true
+        self.gameInfoView.isHidden = false
     }
     
     override var representedObject: Any? {
@@ -71,43 +75,6 @@ class MainViewController: NSViewController {
         }
     }
     
-    
-    func getIFAddresses() -> String {
-        var addresses = [String]()
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs>? = nil
-        if getifaddrs(&ifaddr) == 0 {
-            var ptr = ifaddr?.pointee
-            while ptr != nil {
-                if let flags = ptr?.ifa_flags, let addr = ptr?.ifa_addr {
-                    if (Int32(flags) & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                        if addr.pointee.sa_family == UInt8(AF_INET) || addr.pointee.sa_family == UInt8(AF_INET6) {
-                        
-                            var hostname = [CChar].init(repeating: 0, count: 100)
-                            if getnameinfo(addr, socklen_t(addr.pointee.sa_len), &hostname, socklen_t(hostname.count), nil, socklen_t(0), NI_NUMERICHOST) == 0 {
-                                let address = String.init(cString: hostname)
-                                addresses.append(address)
-                            }
-                            
-                        }
-                    }
-                    ptr = ptr?.ifa_next?.pointee
-                }
-                
-            }
-            
-            freeifaddrs(ifaddr)
-        }
-        
-        for s in addresses {
-            let a = s.split(separator: ".")
-            if a.count == 4 {
-                return s
-            }
-        }
-        
-        return ""
-    }
     
     func createCode() {
         //生成CIFilter(滤镜)对象
@@ -122,10 +89,12 @@ class MainViewController: NSViewController {
          *  4.设置数据(通过滤镜对象的KVC)
          */
         //存放的信息
-        var info = getIFAddresses()
-        if info == "" {
-            info = "no wifi"
-        }
+        let ip = Server.shared.ip
+        let port = Server.shared.defaultPort
+        let info = """
+        {"ip":"\(ip)","port":\(port)}
+        """
+        
         //把信息转化为NSData
         let infoData = info.data(using: String.Encoding.utf8)
         
