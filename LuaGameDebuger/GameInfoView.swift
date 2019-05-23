@@ -31,11 +31,6 @@ class GameInfoView: NSView {
             return
         }
         
-//        if !JSONSerialization.isValidJSONObject(info) {
-//            print("游戏信息不是正确的json字符串")
-//            return
-//        }
-        
         Dispatcher.shared.startGame(info)
     }
     

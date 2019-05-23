@@ -10,8 +10,6 @@ import Cocoa
 
 class SettingView: NSView {
     
-    @IBOutlet weak var siteDirTf: NSTextField!
-    
     @IBOutlet weak var codingDirTf: NSTextField!
     
     @IBOutlet weak var saveBtn: NSButton!
@@ -21,10 +19,10 @@ class SettingView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.wantsLayer = true
-        self.siteDirTf.stringValue = FileHandler.shared.siteDir
         self.codingDirTf.stringValue = FileHandler.shared.codingDir
         
-        self.patchCheckBox.state = NSControl.StateValue.off
+        self.patchCheckBox.state = FileHandler.shared.isPatch ? NSControl.StateValue.on :  NSControl.StateValue.off
+        
     }
     
     @IBAction func saveSetting(_ sender: Any) {
@@ -34,12 +32,21 @@ class SettingView: NSView {
             FileHandler.shared.codingDir = codingDir
         }
         
-        let siteDir = siteDirTf.stringValue
-        if FileManager.default.fileExists(atPath: siteDir, isDirectory: &isDir) && isDir.boolValue {
-            FileHandler.shared.siteDir = siteDir
-        }
-        
         FileHandler.shared.isPatch = self.patchCheckBox.state == NSControl.StateValue.on
     }
     
+    @IBAction func chooseDir(_ sender: Any) {
+        let panel = NSOpenPanel()
+        panel.directoryURL = URL(fileURLWithPath: NSHomeDirectory())
+        panel.allowsMultipleSelection = false
+        panel.canChooseDirectories = true
+        panel.canChooseFiles = false
+        let find = panel.runModal()
+        if find == NSApplication.ModalResponse.OK {
+            self.codingDirTf.stringValue = panel.url?.absoluteString.replacingOccurrences(of: "file://", with: "") ?? ""
+        }
+    }
+    
+    
 }
+

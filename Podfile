@@ -10,6 +10,7 @@ target 'LuaGameDebuger' do
   pod 'CryptoSwift'
   pod 'YYModel'
   pod 'SSZipArchive'
+  pod 'MBProgressHUD'
   
   target 'LuaGameDebugerTests' do
     inherit! :search_paths

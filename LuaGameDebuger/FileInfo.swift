@@ -15,8 +15,9 @@ protocol BaseCodable: Codable {
 
 
 class FileInfo: Codable {
-    var filePath: String? // 相对路径
-    var md5: String?
+    var filePath = "" // 相对路径
+//    var md5 = ""
+    var modDate = ""
 }
 
 extension BaseCodable {

@@ -22,13 +22,13 @@ class FileHandler {
         }
     }
     
-    var userName = ""
-    
     var isPatch = false {
         didSet {
-
+            UserDefaults.standard.set(isPatch, forKey: "isPatch")
         }
     }
+    
+    var userName = ""
     
     var gameInitInfo = "" {
         didSet {
@@ -39,18 +39,21 @@ class FileHandler {
     private init() {
         self.codingDir = UserDefaults.standard.string(forKey: "codingDir") ?? ""
         self.siteDir = findSitesDir() ?? ""
+        self.isPatch = UserDefaults.standard.bool(forKey: "isPatch")  
         
-        let arr = self.siteDir.split(separator: "/")
+        let arr = siteDir.split(separator: "/")
         if arr.count == 3 {
-            self.userName = String(arr[1])
+            userName = String(arr[1])
         }
     }
     
     func createZip() -> Bool {
-        return zip(self.codingDir)
+        return zip(codingDir)
     }
     
     func createPatchZip(_ allFileJson: String) -> Bool {
+        let startTime = CACurrentMediaTime()
+        print("startDate = ",startTime)
         let fileInfoArr = [FileInfo].decode(json: allFileJson) ?? []
         
         var removeFilePathArr = [String]()
@@ -58,48 +61,67 @@ class FileHandler {
         var patchFileInfoArr = [FileInfo]()
         
         for fileInfo in fileInfoArr {
-            let filePath = fileInfo.filePath!
-            let file = self.codingDir.appendingPathComponent(filePath)
+            let filePath = fileInfo.filePath
+            let file = codingDir.appendingPathComponent(filePath)
             if FileManager.default.fileExists(atPath: file) {
-                if md5(file) == fileInfo.md5 {
+                if fileInfo.modDate == modDate(file) {
                     reserveFileInfoArr.append(fileInfo)
                 }
             } else {
                 removeFilePathArr.append(filePath)
             }
         }
-        
+    
         // 相对self.codingDir的路径
-        let files = self.files(dir: self.codingDir)
+        let files = self.files(dir: codingDir)
         
         for file in files {
             if !reserveFileInfoArr.contains(where: { $0.filePath == file }) {
                 let info = FileInfo()
                 info.filePath = file
-                info.md5 = md5(self.codingDir.appendingPathComponent(file))
+                info.modDate = modDate(codingDir.appendingPathComponent(file)) ?? ""
                 patchFileInfoArr.append(info)
             }
         }
         
         // 拷贝patchFileInfoArr里的文件 zip
-        let patchDirPath = self.copyFiles(dir: self.codingDir, patchFileInfoArr: patchFileInfoArr)
+        let patchDirPath = cleanPatchDir()
+        copyFiles(fromDir: codingDir, toDir: patchDirPath, patchFileInfoArr: patchFileInfoArr)
+        
         // 将all.json保存进去
         let allJson = (patchFileInfoArr + reserveFileInfoArr).encode() ?? "[]"
         let allJsonFile = patchDirPath.appendingPathComponent("all.json")
         FileManager.default.createFile(atPath: allJsonFile, contents: allJson.data(using: String.Encoding.utf8), attributes: nil)
         // 将remove.json保存进去
+        let patchDict = ["removePaths":removeFilePathArr]
+        
         let encoder = JSONEncoder()
-        if let removeData = try? encoder.encode(removeFilePathArr) {
-            let removeJsonFile = patchDirPath.appendingPathComponent("remove.json")
-            FileManager.default.createFile(atPath: removeJsonFile, contents: removeData, attributes: nil)
+        if let patchData = try? encoder.encode(patchDict) {
+            let patchJsonFile = patchDirPath.appendingPathComponent("patch.json")
+            FileManager.default.createFile(atPath: patchJsonFile, contents: patchData, attributes: nil)
         }
         // 压缩patchDirPath,并将压缩后的文件夹保存至服务器目录下
         
         defer {
+            let endTime = CACurrentMediaTime()
+            print("endDate = ",endTime)
+            print("interval = ",endTime - startTime)
             try? FileManager.default.removeItem(atPath: patchDirPath)
         }
         
-        return self.zip(patchDirPath)
+        return zip(patchDirPath)
+    }
+    
+    func cleanPatchDir() -> String {
+        let dir = codingDir.deletingLastPathComponent().appendingPathComponent("patch")
+        var isDir: ObjCBool = false
+        if FileManager.default.fileExists(atPath: dir, isDirectory: &isDir) && isDir.boolValue {
+            try? FileManager.default.removeItem(atPath: dir)
+        }
+        
+        try? FileManager.default.createDirectory(atPath: dir, withIntermediateDirectories: true, attributes: nil)
+        
+        return dir
     }
     
     func files(dir: String) -> [String] {
@@ -123,28 +145,34 @@ class FileHandler {
         return data.md5().toHexString()
     }
     
-    func copyFiles(dir: String, patchFileInfoArr: [FileInfo]) -> String {
-        let destDir = dir.deletingLastPathComponent().appendingPathComponent("patch")
+    func modDate(_ file:String) -> String? {
+        if let fileAttr = try? FileManager.default.attributesOfItem(atPath: file) {
+            if let modeDate = fileAttr[FileAttributeKey.modificationDate] as? Date {
+                return modeDate.description
+            }
+        }
         
+        return nil
+    }
+    
+    func copyFiles(fromDir: String, toDir: String, patchFileInfoArr: [FileInfo]) {
         for fileInfo in patchFileInfoArr {
-            let origFile = dir.appendingPathComponent(fileInfo.filePath!)
-            let destFile = destDir.appendingPathComponent(fileInfo.filePath!)
+            let origFile = fromDir.appendingPathComponent(fileInfo.filePath)
+            let destFile = toDir.appendingPathComponent(fileInfo.filePath)
             var isDir:ObjCBool = false;
             if !FileManager.default.fileExists(atPath: destFile.deletingLastPathComponent(), isDirectory: &isDir) || !isDir.boolValue {
                 try? FileManager.default.createDirectory(atPath: destFile.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
             }
             try? FileManager.default.copyItem(atPath: origFile, toPath: destFile)
         }
-        
-        return destDir
     }
     
     func zip(_ dir: String) -> Bool {
-        if self.codingDir.isEmpty || self.siteDir.isEmpty {
+        if codingDir.isEmpty || siteDir.isEmpty {
             print("项目目录和服务器目录不能为空")
             return false
         }
-        let zipPath = self.siteDir.appendingPathComponent(self.codingDir.lastPathComponent()) + ".zip"
+        let zipPath = siteDir.appendingPathComponent(codingDir.lastPathComponent()) + ".zip"
         try? FileManager.default.removeItem(atPath: zipPath)
         return SSZipArchive.createZipFile(atPath: zipPath, withContentsOfDirectory: dir)
     }

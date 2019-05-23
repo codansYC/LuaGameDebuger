@@ -10,8 +10,6 @@ import Cocoa
 import CryptoSwift
 
 class MainViewController: NSViewController {
-
-    @IBOutlet weak var codeBtn: NSButton!
     
     @IBOutlet weak var logBtn: NSButton!
     
@@ -33,37 +31,25 @@ class MainViewController: NSViewController {
         
         Dispatcher.shared.start()
         
-    }
-
-    @IBAction func showCode(_ sender: Any) {
-        self.codeImageView.isHidden = false
-        self.logView.isHidden = true
-        self.settingView.isHidden = true
-        self.gameInfoView.isHidden = true
+        createCode()
         
-        self.createCode()
+        showLog(logBtn)
+        
     }
     
     @IBAction func showLog(_ sender: Any) {
-        self.codeImageView.isHidden = true
         self.logView.isHidden = false
         self.settingView.isHidden = true
         self.gameInfoView.isHidden = true
     }
     
     @IBAction func setting(_ sender: Any) {
-        self.codeImageView.isHidden = true
         self.logView.isHidden = true
         self.settingView.isHidden = false
         self.gameInfoView.isHidden = true
     }
     
-    @IBAction func archive(_ sender: Any) {
-        Server.shared.sendArchiveMsg()
-    }
-    
     @IBAction func startGame(_ sender: Any) {
-        self.codeImageView.isHidden = true
         self.logView.isHidden = true
         self.settingView.isHidden = true
         self.gameInfoView.isHidden = false
@@ -107,7 +93,7 @@ class MainViewController: NSViewController {
          */
         if let outImage = filter?.outputImage {
             if let cgImage = self.convertCIImageToCGImage(ciImage: outImage) {
-                let image = NSImage(cgImage: cgImage, size: NSSize(width: 150, height: 150))
+                let image = NSImage(cgImage: cgImage, size: NSSize(width: 82, height: 82))
                 self.codeImageView.image = image;
             }
         }
