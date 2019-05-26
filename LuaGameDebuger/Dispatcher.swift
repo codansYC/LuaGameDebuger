@@ -164,6 +164,27 @@ class Dispatcher {
         let logDesc = "[调试器]" + dateStr + log
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "log"), object: nil, userInfo: ["log":logDesc])
     }
+    
+    func startShell() {
+        
+        let task = Process()     // 创建NSTask对象
+        // 设置task
+        task.launchPath = "/bin/bash"    // 执行路径(这里是需要执行命令的绝对路径)
+        // 设置执行的具体命令
+        var arguments = [String]()
+        let shellPath = Bundle.main.path(forResource: "serverShell", ofType: "sh")
+        
+        arguments.append(shellPath!)
+        task.arguments = arguments
+        task.currentDirectoryPath = Bundle.main.resourcePath!
+        
+        task.terminationHandler = { proce in              // 执行结束的闭包(回调)
+            print("finished")
+        }
+        
+        task.launch()                // 开启执行
+        task.waitUntilExit()       // 阻塞直到执行完毕
+    }
 }
 
 

@@ -25,6 +25,8 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Dispatcher.shared.startShell()
     
         setUpViews()
         
