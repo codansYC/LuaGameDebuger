@@ -825,7 +825,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="200" id="Tt3-hI-MH9"/>
                                                         </constraints>
-                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Fliter" bezelStyle="round" id="dus-Zn-sSM">
+                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Filter" bezelStyle="round" id="dus-Zn-sSM">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -854,6 +854,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="clearBtn" destination="qdX-pU-XqS" id="amZ-18-OAm"/>
+                                            <outlet property="filterTextFeild" destination="P8J-7w-mNw" id="mME-wM-ZkH"/>
                                             <outlet property="fliterTextFeild" destination="P8J-7w-mNw" id="Mbp-gN-lvj"/>
                                             <outlet property="tableView" destination="uaj-dl-XsW" id="KnF-t1-jQQ"/>
                                         </connections>

@@ -12,14 +12,14 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDe
     
     @IBOutlet weak var clearBtn: NSButton!
     
-    @IBOutlet weak var fliterTextFeild: NSTextField!
+    @IBOutlet weak var filterTextFeild: NSTextField!
     
     @IBOutlet weak var tableView: NSTableView!
     
     var logs: [String] = []
-    var fliterLogs: [String] = []
+    var filterLogs: [String] = []
     var displayLogs: [String] {
-        return fliterTextFeild.stringValue.isEmpty ? logs : fliterLogs
+        return filterTextFeild.stringValue.isEmpty ? logs : filterLogs
     }
     
     override func awakeFromNib() {
@@ -40,16 +40,16 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDe
         tableView.delegate = self
         tableView.dataSource = self
         
-        fliterTextFeild.delegate = self
-        fliterTextFeild.focusRingType = NSFocusRingType.none
+        filterTextFeild.delegate = self
+        filterTextFeild.focusRingType = NSFocusRingType.none
     }
     
     func appendLog(_ log: String) {
         DispatchQueue.main.async {
             self.logs.append(log)
-            let fliterKw = self.fliterTextFeild.stringValue
-            if !fliterKw.isEmpty && log.contains(fliterKw) {
-                self.fliterLogs.append(log)
+            let filterKw = self.filterTextFeild.stringValue
+            if !filterKw.isEmpty && log.contains(filterKw) {
+                self.filterLogs.append(log)
             }
             self.tableView.insertRows(at: IndexSet.init(integer: self.displayLogs.count-1), withAnimation: NSTableView.AnimationOptions.init(rawValue: 0))
         }
@@ -57,7 +57,7 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDe
     
     @IBAction func clearLogs(_ btn: NSButton? = nil) {
         logs.removeAll()
-        fliterLogs.removeAll()
+        filterLogs.removeAll()
         tableView.reloadData()
     }
 
@@ -81,17 +81,17 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDe
     }
     
     func controlTextDidChange(_ obj: Notification) {
-        fliter()
+        filter()
     }
     
-    func fliter() {
-        if fliterTextFeild.stringValue.isEmpty {
-            fliterLogs.removeAll()
+    func filter() {
+        if filterTextFeild.stringValue.isEmpty {
+            filterLogs.removeAll()
             tableView.reloadData()
             return
         }
         
-        fliterLogs = logs.filter({ $0.contains(fliterTextFeild.stringValue) })
+        filterLogs = logs.filter({ $0.contains(filterTextFeild.stringValue) })
         tableView.reloadData()
     }
 }
