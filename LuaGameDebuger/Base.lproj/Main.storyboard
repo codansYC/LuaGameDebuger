@@ -914,9 +914,9 @@
                                                     <constraint firstItem="GQ6-ma-OpS" firstAttribute="centerX" secondItem="HwA-uv-JNb" secondAttribute="trailing" multiplier="2/3" id="yvq-W1-Pwl"/>
                                                 </constraints>
                                             </customView>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4dD-gK-lV5">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4dD-gK-lV5">
                                                 <rect key="frame" x="3" y="388" width="111" height="17"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="输入游戏初始数据" id="0bE-9p-sdV">
+                                                <textFieldCell key="cell" lineBreakMode="clipping" enabled="NO" focusRingType="none" placeholderString="输入游戏初始数据" id="0bE-9p-sdV">
                                                     <font key="font" usesAppearanceFont="YES"/>
                                                     <color key="textColor" name="systemGrayColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

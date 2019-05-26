@@ -18,6 +18,17 @@ class DebugView: NSView, NSTextViewDelegate {
         super.awakeFromNib()
         textView.string = FileHandler.shared.gameInitInfo
         textView.delegate = self
+        placeholderLabel.isEditable = false
+        placeholderLabel.isSelectable = false
+        placeholderLabel.focusRingType = NSFocusRingType.none
+    }
+    
+    override func hitTest(_ point: NSPoint) -> NSView? {
+        let hitView = super.hitTest(point)
+        if hitView == placeholderLabel {
+            return textView
+        }
+        return hitView
     }
     
     @IBAction func startGame(sender: Any) {
