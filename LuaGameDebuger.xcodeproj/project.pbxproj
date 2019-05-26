@@ -13,8 +13,8 @@
 		42047C242286CED5003D8849 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42047C232286CED5003D8849 /* Server.swift */; };
 		422B0876228A2D9200B5CFCA /* FileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B0875228A2D9200B5CFCA /* FileInfo.swift */; };
 		422B0878228A2E1100B5CFCA /* FileHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B0877228A2E1100B5CFCA /* FileHandler.swift */; };
-		422B0899229057E000B5CFCA /* GameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B0898229057E000B5CFCA /* GameInfoView.swift */; };
 		422B089B22910D4600B5CFCA /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B089A22910D4600B5CFCA /* Dispatcher.swift */; };
+		422B08A22299A61000B5CFCA /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B08A12299A61000B5CFCA /* DebugView.swift */; };
 		424200E8228AB93E00EB42CD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424200E7228AB93E00EB42CD /* SettingView.swift */; };
 		424200EA228ABB4800EB42CD /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424200E9228ABB4800EB42CD /* LogView.swift */; };
 		42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F33228315AF005B0C14 /* AppDelegate.swift */; };
@@ -51,8 +51,8 @@
 		422B0875228A2D9200B5CFCA /* FileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInfo.swift; sourceTree = "<group>"; };
 		422B0877228A2E1100B5CFCA /* FileHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileHandler.swift; sourceTree = "<group>"; };
 		422B0879228A322D00B5CFCA /* LuaGameDebuger-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LuaGameDebuger-Bridging-Header.h"; sourceTree = "<group>"; };
-		422B0898229057E000B5CFCA /* GameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoView.swift; sourceTree = "<group>"; };
 		422B089A22910D4600B5CFCA /* Dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
+		422B08A12299A61000B5CFCA /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		424200E7228AB93E00EB42CD /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		424200E9228ABB4800EB42CD /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		42C56F30228315AF005B0C14 /* LuaGameDebuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaGameDebuger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +140,7 @@
 				422B0877228A2E1100B5CFCA /* FileHandler.swift */,
 				422B0879228A322D00B5CFCA /* LuaGameDebuger-Bridging-Header.h */,
 				424200E9228ABB4800EB42CD /* LogView.swift */,
-				422B0898229057E000B5CFCA /* GameInfoView.swift */,
+				422B08A12299A61000B5CFCA /* DebugView.swift */,
 				422B089A22910D4600B5CFCA /* Dispatcher.swift */,
 			);
 			path = LuaGameDebuger;
@@ -387,6 +387,7 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -394,6 +395,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SSZipArchive.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,11 +413,11 @@
 				422B0878228A2E1100B5CFCA /* FileHandler.swift in Sources */,
 				42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */,
 				422B089B22910D4600B5CFCA /* Dispatcher.swift in Sources */,
+				422B08A22299A61000B5CFCA /* DebugView.swift in Sources */,
 				42047C242286CED5003D8849 /* Server.swift in Sources */,
 				424200E8228AB93E00EB42CD /* SettingView.swift in Sources */,
 				42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */,
 				424200EA228ABB4800EB42CD /* LogView.swift in Sources */,
-				422B0899229057E000B5CFCA /* GameInfoView.swift in Sources */,
 				422B0876228A2D9200B5CFCA /* FileInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -587,10 +589,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuaGameDebuger/LuaGameDebuger-Bridging-Header.h";
@@ -608,10 +607,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebuger/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebuger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "LuaGameDebuger/LuaGameDebuger-Bridging-Header.h";
@@ -628,11 +624,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebugerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -649,11 +641,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebugerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -669,11 +657,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebugerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -689,11 +673,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = LuaGameDebugerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wemomo.LuaGameDebugerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

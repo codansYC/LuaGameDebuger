@@ -19,15 +19,14 @@ class MainViewController: NSViewController {
     
     @IBOutlet weak var logView: LogView!
     
-    @IBOutlet weak var settingView: SettingView!
+    let settingView = SettingView()
     
-    @IBOutlet weak var gameInfoView: GameInfoView!
+    @IBOutlet weak var debugView: NSView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.containerView.wantsLayer = true;
-        self.containerView.layer?.backgroundColor = NSColor.white.cgColor;
+        setUpViews()
         
         Dispatcher.shared.start()
         
@@ -37,22 +36,36 @@ class MainViewController: NSViewController {
         
     }
     
+    func setUpViews() {
+        containerView.addSubview(settingView)
+        settingView.isHidden = true
+        settingView.snp.makeConstraints { (make) in
+            make.edges.equalTo(NSEdgeInsetsMake(20, 0, 20, 20))
+        }
+        
+        containerView.addSubview(debugView)
+        debugView.isHidden = true
+        debugView.snp.makeConstraints { (make) in
+            make.edges.equalTo(containerView)
+        }
+    }
+    
     @IBAction func showLog(_ sender: Any) {
         self.logView.isHidden = false
         self.settingView.isHidden = true
-        self.gameInfoView.isHidden = true
+        self.debugView.isHidden = true
     }
     
     @IBAction func setting(_ sender: Any) {
         self.logView.isHidden = true
         self.settingView.isHidden = false
-        self.gameInfoView.isHidden = true
+        self.debugView.isHidden = true
     }
     
     @IBAction func startGame(_ sender: Any) {
         self.logView.isHidden = true
         self.settingView.isHidden = true
-        self.gameInfoView.isHidden = false
+        self.debugView.isHidden = false
     }
     
     override var representedObject: Any? {
@@ -66,14 +79,7 @@ class MainViewController: NSViewController {
         //生成CIFilter(滤镜)对象
         let filter = CIFilter(name: "CIQRCodeGenerator")
         filter?.setDefaults()
-        /**
-         *  3.恢复滤镜默认设置
-         */
-//        [filter setDefaults];
-        
-        /**
-         *  4.设置数据(通过滤镜对象的KVC)
-         */
+       
         //存放的信息
         let ip = Server.shared.ip
         let port = Server.shared.defaultPort
@@ -88,9 +94,6 @@ class MainViewController: NSViewController {
         filter?.setValue(infoData, forKey: "inputMessage")
         filter?.setValue("Q", forKey: "inputCorrectionLevel")
         
-        /**
-         *  5.生成二维码
-         */
         if let outImage = filter?.outputImage {
             if let cgImage = self.convertCIImageToCGImage(ciImage: outImage) {
                 let image = NSImage(cgImage: cgImage, size: NSSize(width: 82, height: 82))
@@ -105,8 +108,6 @@ class MainViewController: NSViewController {
         let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent)
         return cgImage
     }
-    
-    
 }
 
 

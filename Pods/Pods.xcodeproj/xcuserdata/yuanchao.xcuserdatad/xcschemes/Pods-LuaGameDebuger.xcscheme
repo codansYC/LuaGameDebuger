@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "637460331095FB95B91A57F41FAB0AAB"
+               BlueprintIdentifier = "00445B8FE848A5AF8057EF1F908B4BCC"
                BuildableName = "Pods_LuaGameDebuger.framework"
                BlueprintName = "Pods-LuaGameDebuger"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "637460331095FB95B91A57F41FAB0AAB"
+            BlueprintIdentifier = "00445B8FE848A5AF8057EF1F908B4BCC"
             BuildableName = "Pods_LuaGameDebuger.framework"
             BlueprintName = "Pods-LuaGameDebuger"
             ReferencedContainer = "container:Pods.xcodeproj">

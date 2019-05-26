@@ -8,18 +8,25 @@
 
 import Cocoa
 
-class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource {
+class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate {
     
     @IBOutlet weak var clearBtn: NSButton!
+    
+    @IBOutlet weak var fliterTextFeild: NSTextField!
     
     @IBOutlet weak var tableView: NSTableView!
     
     var logs: [String] = []
+    var fliterLogs: [String] = []
+    var displayLogs: [String] {
+        return fliterTextFeild.stringValue.isEmpty ? logs : fliterLogs
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableView.headerView = nil
         
+        tableView.headerView = nil
+
         Dispatcher.shared.receivedLogCallback = { [unowned self] log in
             self.appendLog(log)
         }
@@ -33,17 +40,24 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        fliterTextFeild.delegate = self
+        fliterTextFeild.focusRingType = NSFocusRingType.none
     }
     
     func appendLog(_ log: String) {
         DispatchQueue.main.async {
             self.logs.append(log)
-            self.tableView.insertRows(at: IndexSet.init(integer: self.logs.count-1), withAnimation: NSTableView.AnimationOptions.init(rawValue: 0))
+            let fliterKw = self.fliterTextFeild.stringValue
+            if !fliterKw.isEmpty && log.contains(fliterKw) {
+                self.fliterLogs.append(log)
+            }
+            self.tableView.insertRows(at: IndexSet.init(integer: self.displayLogs.count-1), withAnimation: NSTableView.AnimationOptions.init(rawValue: 0))
         }
     }
     
     @IBAction func clearLogs(_ btn: NSButton? = nil) {
         logs.removeAll()
+        fliterLogs.removeAll()
         tableView.reloadData()
     }
 
@@ -54,23 +68,32 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return logs.count
+        return displayLogs.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: self) as? NSTableCellView
         
-        cellView?.textField?.stringValue = logs[row]
+        cellView?.textField?.stringValue = displayLogs[row]
         cellView?.textField?.maximumNumberOfLines = Int.max
-        
-        cellView?.wantsLayer = true
-//        cellView?.layer?.backgroundColor = row % 2 == 1 ? NSColor.white.cgColor : NSColor.init(calibratedRed: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 1).cgColor
         
         return cellView
     }
     
-
+    func controlTextDidChange(_ obj: Notification) {
+        fliter()
+    }
     
+    func fliter() {
+        if fliterTextFeild.stringValue.isEmpty {
+            fliterLogs.removeAll()
+            tableView.reloadData()
+            return
+        }
+        
+        fliterLogs = logs.filter({ $0.contains(fliterTextFeild.stringValue) })
+        tableView.reloadData()
+    }
 }
 
 class LogCell: NSTableCellView {

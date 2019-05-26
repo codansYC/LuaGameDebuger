@@ -1,12 +1,14 @@
 PODS:
   - CocoaAsyncSocket (7.6.3)
   - CryptoSwift (0.13.1)
+  - SnapKit (4.2.0)
   - SSZipArchive (2.1.4)
   - YYModel (1.0.4)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - CryptoSwift
+  - SnapKit
   - SSZipArchive
   - YYModel
 
@@ -14,15 +16,17 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CocoaAsyncSocket
     - CryptoSwift
+    - SnapKit
     - SSZipArchive
     - YYModel
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SSZipArchive: 41455d4b8d2b6ab93990820b50dc697c2554a322
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 5f4cee55bc340f98dfc235438ae6b1c53f1ae403
+PODFILE CHECKSUM: 594503248fdecc9cb0485e15dfd8b75956af6f73
 
 COCOAPODS: 1.5.3
