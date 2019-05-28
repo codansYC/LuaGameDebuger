@@ -106,10 +106,11 @@ class SettingView: NSView {
         self.scriptObj = NSAppleScript(contentsOf: url, error: nil)
         self.scriptObj?.compileAndReturnError(nil)
         self.scriptObj?.executeAndReturnError(nil)
-        
-        self.scriptObj = NSAppleScript(source: "do shell script \"open -a /Applications/Safari.app http://luagame.com\"")
-        self.scriptObj?.compileAndReturnError(nil)
-        self.scriptObj?.executeAndReturnError(nil)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            self.scriptObj = NSAppleScript(source: "do shell script \"open -a /Applications/Safari.app http://luagame.com\"")
+            self.scriptObj?.compileAndReturnError(nil)
+            self.scriptObj?.executeAndReturnError(nil)
+        }
     }
     
 }

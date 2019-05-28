@@ -17,7 +17,7 @@
 		422B08A22299A61000B5CFCA /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B08A12299A61000B5CFCA /* DebugView.swift */; };
 		424200E8228AB93E00EB42CD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424200E7228AB93E00EB42CD /* SettingView.swift */; };
 		424200EA228ABB4800EB42CD /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424200E9228ABB4800EB42CD /* LogView.swift */; };
-		429CA0EC229CF77B00F2788E /* script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 429CA0EB229CF77B00F2788E /* script.scpt */; };
+		429CA0FB229D284F00F2788E /* script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 429CA0FA229D284F00F2788E /* script.scpt */; };
 		42C56F34228315AF005B0C14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F33228315AF005B0C14 /* AppDelegate.swift */; };
 		42C56F36228315AF005B0C14 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C56F35228315AF005B0C14 /* MainViewController.swift */; };
 		42C56F38228315B1005B0C14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42C56F37228315B1005B0C14 /* Assets.xcassets */; };
@@ -56,7 +56,7 @@
 		422B08A12299A61000B5CFCA /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		424200E7228AB93E00EB42CD /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		424200E9228ABB4800EB42CD /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
-		429CA0EB229CF77B00F2788E /* script.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = script.scpt; sourceTree = "<group>"; };
+		429CA0FA229D284F00F2788E /* script.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = script.scpt; sourceTree = "<group>"; };
 		42C56F30228315AF005B0C14 /* LuaGameDebuger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LuaGameDebuger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C56F33228315AF005B0C14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42C56F35228315AF005B0C14 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				424200E9228ABB4800EB42CD /* LogView.swift */,
 				422B08A12299A61000B5CFCA /* DebugView.swift */,
 				422B089A22910D4600B5CFCA /* Dispatcher.swift */,
-				429CA0EB229CF77B00F2788E /* script.scpt */,
+				429CA0FA229D284F00F2788E /* script.scpt */,
 			);
 			path = LuaGameDebuger;
 			sourceTree = "<group>";
@@ -304,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429CA0EC229CF77B00F2788E /* script.scpt in Resources */,
+				429CA0FB229D284F00F2788E /* script.scpt in Resources */,
 				42C56F38228315B1005B0C14 /* Assets.xcassets in Resources */,
 				42C56F3B228315B1005B0C14 /* Main.storyboard in Resources */,
 			);

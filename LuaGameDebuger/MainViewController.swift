@@ -25,8 +25,6 @@ class MainViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Dispatcher.shared.startShell()
     
         setUpViews()
         
@@ -56,6 +54,7 @@ class MainViewController: NSViewController {
         self.logView.isHidden = false
         self.settingView.isHidden = true
         self.debugView.isHidden = true
+        self.logBtn.isHighlighted = true
     }
     
     @IBAction func setting(_ sender: Any) {

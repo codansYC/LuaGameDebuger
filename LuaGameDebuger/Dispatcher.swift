@@ -21,8 +21,8 @@ class Dispatcher {
     var requestAllJsonCallback: ((String)->Void)?
     
     var resourceUrl: String {
-        return "http://luagame.com/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
-//        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+//        return "http://luagame.com/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
     }
     
     var receivedLogCallback: ((String)->(Void))?
@@ -166,49 +166,6 @@ class Dispatcher {
         let dateStr = Date(timeIntervalSince1970: Date().timeIntervalSince1970 + 8 * 60 * 60).description.replacingOccurrences(of: "+0000", with: "")
         let logDesc = "[调试器]" + dateStr + log
         NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "log"), object: nil, userInfo: ["log":logDesc])
-    }
-    
-    func startShell() {
-        /*
-        let task = Process()     // 创建NSTask对象
-        // 设置task
-        task.launchPath = "/bin/bash"    // 执行路径(这里是需要执行命令的绝对路径)
-        // 设置执行的具体命令
-        var arguments = [String]()
-        let shellPath = Bundle.main.path(forResource: "serverShell", ofType: "sh")
-        
-        arguments.append(shellPath!)
-        task.arguments = arguments
-        task.currentDirectoryPath = Bundle.main.resourcePath!
-        
-        task.terminationHandler = { proce in              // 执行结束的闭包(回调)
-            print("finished")
-        }
-        
-        task.launch()                // 开启执行
-        task.waitUntilExit()       // 阻塞直到执行完毕
-        */
-//        var lastError: NSDictionary?
-//        let shellPath = Bundle.main.path(forResource: "script", ofType: "scpt")
-//        let scriptURL = URL(fileURLWithPath: shellPath ?? "")
-//        let fileName = scriptURL.deletingPathExtension().lastPathComponent
-//        let fileExt = scriptURL.pathExtension //返回总是字符串
-//        var scriptObj:NSAppleScript?
-//        if let url = Bundle.main.url(forResource: "script", withExtension: fileExt) {
-//
-//            let scriptObj = NSAppleScript(contentsOf: url, error: &lastError)
-//            let suc = scriptObj?.compileAndReturnError(nil) //编译
-//            print(suc!)
-//        }
-        
-//        var lastError: NSDictionary?
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
-//            self.scriptObj = NSAppleScript(source: "do shell script \"mkdir /Users/yuanchao/test\" with administrator privileges")
-//            let suc = self.scriptObj?.compileAndReturnError(&lastError) //编译
-//            self.scriptObj?.executeAndReturnError(ni)
-//        }
-        
-        
     }
     
     class func alert(_ msg: String) {

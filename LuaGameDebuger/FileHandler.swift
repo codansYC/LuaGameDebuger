@@ -16,10 +16,13 @@ class FileHandler {
             UserDefaults.standard.set(codingDir, forKey: "codingDir")
         }
     }
-    var siteDir = "" {
-        didSet {
-            
+    var _siteDir = ""
+    var siteDir: String {
+        if _siteDir.count == 0 {
+            _siteDir = findSitesDir() ?? ""
         }
+        
+        return _siteDir
     }
     
     var isPatch = false {
@@ -38,7 +41,7 @@ class FileHandler {
     
     private init() {
         self.codingDir = UserDefaults.standard.string(forKey: "codingDir") ?? ""
-        self.siteDir = findSitesDir() ?? ""
+        self._siteDir = findSitesDir() ?? ""
         self.isPatch = UserDefaults.standard.bool(forKey: "isPatch")  
         
         let arr = siteDir.split(separator: "/")
