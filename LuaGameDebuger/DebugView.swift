@@ -35,6 +35,7 @@ class DebugView: NSView, NSTextViewDelegate {
         let info = self.textView.string
         if !Server.shared.hasClientConnected {
             Dispatcher.postLog("没有客户端连接")
+            Dispatcher.alert("没有客户端连接,请打开陌陌客户端扫描二维码")
             return
         }
         

@@ -13,6 +13,7 @@ class SettingView: NSView {
     
     let codingDirTf = NSTextField()
     let patchCheckBox = NSButton(checkboxWithTitle: "增量更新", target: nil, action: nil)
+    var scriptObj: NSAppleScript?
     
     init() {
         super.init(frame: NSRect.zero)
@@ -35,12 +36,14 @@ class SettingView: NSView {
         codingDirLabel.isBordered = false
         codingDirLabel.backgroundColor = NSColor.clear
         let chooseBtn = NSButton(title: "选择目录", target: self, action: #selector(SettingView.chooseDir))
-        let saveBtn = NSButton(title: "保存设置", target: self, action: Selector(("saveSetting")))
+        let saveBtn = NSButton(title: "保存设置", target: self, action: #selector(SettingView.saveSetting))
+        let serverConfigBtn = NSButton(title: "一键配置服务器", target: self, action: #selector(SettingView.configServer))
         
         addSubview(codingDirLabel)
         addSubview(codingDirTf)
         addSubview(chooseBtn)
         addSubview(patchCheckBox)
+        addSubview(serverConfigBtn)
         addSubview(saveBtn)
         
         codingDirLabel.snp.makeConstraints { (make) in
@@ -63,13 +66,17 @@ class SettingView: NSView {
             make.left.equalTo(codingDirLabel)
             make.top.equalTo(codingDirLabel.snp.bottom).offset(30)
         }
+        serverConfigBtn.snp.makeConstraints { (make) in
+            make.left.equalTo(patchCheckBox)
+            make.top.equalTo(patchCheckBox.snp.bottom).offset(30)
+        }
         saveBtn.snp.makeConstraints { (make) in
             make.bottom.equalTo(-30)
             make.centerX.equalTo(self)
         }
     }
     
-    func saveSetting() {
+    @objc func saveSetting() {
         let codingDir = codingDirTf.stringValue
         var isDir: ObjCBool = false
         if FileManager.default.fileExists(atPath: codingDir, isDirectory: &isDir) && isDir.boolValue {
@@ -85,12 +92,25 @@ class SettingView: NSView {
         panel.allowsMultipleSelection = false
         panel.canChooseDirectories = true
         panel.canChooseFiles = false
-        let find = panel.runModal()
-        if find == NSApplication.ModalResponse.OK {
-            self.codingDirTf.stringValue = panel.url?.absoluteString.replacingOccurrences(of: "file://", with: "") ?? ""
+        panel.beginSheetModal(for: NSApplication.shared.keyWindow!) { (resp) in
+            if resp == NSApplication.ModalResponse.OK {
+                self.codingDirTf.stringValue = panel.url?.absoluteString.replacingOccurrences(of: "file://", with: "") ?? ""
+            }
         }
     }
     
+    
+    @objc func configServer() {
+        let path = Bundle.main.path(forResource: "script", ofType: "scpt")!
+        let url = URL(fileURLWithPath: path)
+        self.scriptObj = NSAppleScript(contentsOf: url, error: nil)
+        self.scriptObj?.compileAndReturnError(nil)
+        self.scriptObj?.executeAndReturnError(nil)
+        
+        self.scriptObj = NSAppleScript(source: "do shell script \"open -a /Applications/Safari.app http://luagame.com\"")
+        self.scriptObj?.compileAndReturnError(nil)
+        self.scriptObj?.executeAndReturnError(nil)
+    }
     
 }
 

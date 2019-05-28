@@ -187,7 +187,7 @@ class FileHandler {
             let path = ursersDir.appendingPathComponent(file)
             if let subfiles = try? FileManager.default.contentsOfDirectory(atPath: path) {
                 for subfile in subfiles {
-                    if subfile == "Sites" {
+                    if subfile == "LuaGameSites" {
                         return path.appendingPathComponent(subfile)
                     }
                 }

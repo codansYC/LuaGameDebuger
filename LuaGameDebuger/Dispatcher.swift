@@ -12,6 +12,8 @@ class Dispatcher {
     
     static let shared = Dispatcher()
     
+    var scriptObj: NSAppleScript?
+    
     var isPatch: Bool {
         return FileHandler.shared.isPatch
     }
@@ -19,7 +21,8 @@ class Dispatcher {
     var requestAllJsonCallback: ((String)->Void)?
     
     var resourceUrl: String {
-        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+        return "http://luagame.com/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+//        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
     }
     
     var receivedLogCallback: ((String)->(Void))?
@@ -166,7 +169,7 @@ class Dispatcher {
     }
     
     func startShell() {
-        
+        /*
         let task = Process()     // 创建NSTask对象
         // 设置task
         task.launchPath = "/bin/bash"    // 执行路径(这里是需要执行命令的绝对路径)
@@ -184,6 +187,37 @@ class Dispatcher {
         
         task.launch()                // 开启执行
         task.waitUntilExit()       // 阻塞直到执行完毕
+        */
+//        var lastError: NSDictionary?
+//        let shellPath = Bundle.main.path(forResource: "script", ofType: "scpt")
+//        let scriptURL = URL(fileURLWithPath: shellPath ?? "")
+//        let fileName = scriptURL.deletingPathExtension().lastPathComponent
+//        let fileExt = scriptURL.pathExtension //返回总是字符串
+//        var scriptObj:NSAppleScript?
+//        if let url = Bundle.main.url(forResource: "script", withExtension: fileExt) {
+//
+//            let scriptObj = NSAppleScript(contentsOf: url, error: &lastError)
+//            let suc = scriptObj?.compileAndReturnError(nil) //编译
+//            print(suc!)
+//        }
+        
+//        var lastError: NSDictionary?
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+//            self.scriptObj = NSAppleScript(source: "do shell script \"mkdir /Users/yuanchao/test\" with administrator privileges")
+//            let suc = self.scriptObj?.compileAndReturnError(&lastError) //编译
+//            self.scriptObj?.executeAndReturnError(ni)
+//        }
+        
+        
+    }
+    
+    class func alert(_ msg: String) {
+        let alert = NSAlert()
+        alert.messageText = msg
+        alert.addButton(withTitle: "知道了")
+        alert.beginSheetModal(for: NSApplication.shared.keyWindow!) { (res) in
+            
+        }
     }
 }
 
