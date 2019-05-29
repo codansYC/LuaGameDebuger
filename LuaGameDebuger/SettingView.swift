@@ -13,7 +13,6 @@ class SettingView: NSView {
     
     let codingDirTf = NSTextField()
     let patchCheckBox = NSButton(checkboxWithTitle: "增量更新", target: nil, action: nil)
-    var scriptObj: NSAppleScript?
     
     init() {
         super.init(frame: NSRect.zero)
@@ -94,23 +93,19 @@ class SettingView: NSView {
         panel.canChooseFiles = false
         panel.beginSheetModal(for: NSApplication.shared.keyWindow!) { (resp) in
             if resp == NSApplication.ModalResponse.OK {
-                self.codingDirTf.stringValue = panel.url?.absoluteString.replacingOccurrences(of: "file://", with: "") ?? ""
+                var dir = panel.url?.absoluteString.replacingOccurrences(of: "file://", with: "") ?? ""
+                if dir.hasSuffix("/") {
+                    dir.removeLast()
+                }
+                self.codingDirTf.stringValue = dir
+                
             }
         }
     }
     
     
     @objc func configServer() {
-        let path = Bundle.main.path(forResource: "script", ofType: "scpt")!
-        let url = URL(fileURLWithPath: path)
-        self.scriptObj = NSAppleScript(contentsOf: url, error: nil)
-        self.scriptObj?.compileAndReturnError(nil)
-        self.scriptObj?.executeAndReturnError(nil)
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            self.scriptObj = NSAppleScript(source: "do shell script \"open -a /Applications/Safari.app http://luagame.com\"")
-            self.scriptObj?.compileAndReturnError(nil)
-            self.scriptObj?.executeAndReturnError(nil)
-        }
+        Server.shared.configNginx()
     }
     
 }

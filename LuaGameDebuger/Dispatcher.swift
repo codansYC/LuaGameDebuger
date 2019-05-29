@@ -21,14 +21,20 @@ class Dispatcher {
     var requestAllJsonCallback: ((String)->Void)?
     
     var resourceUrl: String {
-//        return "http://luagame.com/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
-        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+        return "http://\(Server.shared.ip):6789/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
+//        return "http://\(Server.shared.ip)/~\(FileHandler.shared.userName)/\(FileHandler.shared.codingDir.lastPathComponent()).zip"
     }
     
     var receivedLogCallback: ((String)->(Void))?
     
     func start() {
         Server.shared.ip = getIFAddresses()
+        if Server.shared.ip.isEmpty {
+            Dispatcher.alert("请检查网络，确认网络连接wifi后重启调试工具")
+            return
+        }
+        
+        // 开启nginx环境
         Server.shared.start()
     }
     

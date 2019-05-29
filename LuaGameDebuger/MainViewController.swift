@@ -12,6 +12,8 @@ import CryptoSwift
 class MainViewController: NSViewController {
     
     @IBOutlet weak var logBtn: NSButton!
+    @IBOutlet weak var settingBtn: NSButton!
+    @IBOutlet weak var debug: NSButton!
     
     @IBOutlet weak var containerView: NSView!
     
@@ -54,19 +56,35 @@ class MainViewController: NSViewController {
         self.logView.isHidden = false
         self.settingView.isHidden = true
         self.debugView.isHidden = true
-        self.logBtn.isHighlighted = true
+        
+        DispatchQueue.main.async {
+            self.logBtn.isHighlighted = true
+            self.settingBtn.isHighlighted = false
+            self.debug.isHighlighted = false
+        }
+        
     }
     
     @IBAction func setting(_ sender: Any) {
         self.logView.isHidden = true
         self.settingView.isHidden = false
         self.debugView.isHidden = true
+        DispatchQueue.main.async {
+            self.logBtn.isHighlighted = false
+            self.settingBtn.isHighlighted = true
+            self.debug.isHighlighted = false
+        }
     }
     
     @IBAction func startGame(_ sender: Any) {
         self.logView.isHidden = true
         self.settingView.isHidden = true
         self.debugView.isHidden = false
+        DispatchQueue.main.async {
+            self.logBtn.isHighlighted = false
+            self.settingBtn.isHighlighted = false
+            self.debug.isHighlighted = true
+        }
     }
     
     override var representedObject: Any? {

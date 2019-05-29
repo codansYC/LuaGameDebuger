@@ -73,10 +73,10 @@ class LogView: NSView, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDe
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cellView = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: self) as? NSTableCellView
-        
-        cellView?.textField?.stringValue = displayLogs[row]
-        cellView?.textField?.maximumNumberOfLines = Int.max
-        
+        if row < displayLogs.count {
+            cellView?.textField?.stringValue = displayLogs[row]
+            cellView?.textField?.maximumNumberOfLines = Int.max
+        }
         return cellView
     }
     

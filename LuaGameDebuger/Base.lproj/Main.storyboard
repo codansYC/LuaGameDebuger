@@ -995,16 +995,18 @@
                     <connections>
                         <outlet property="codeImageView" destination="paH-eh-oI1" id="8eo-p1-wKb"/>
                         <outlet property="containerView" destination="cEy-K3-GoT" id="8m6-FL-Ndl"/>
+                        <outlet property="debug" destination="KTO-BR-qLA" id="Rna-1A-zoY"/>
                         <outlet property="debugView" destination="bcS-bh-1qc" id="QjI-LH-Itw"/>
                         <outlet property="logBtn" destination="Pol-il-XcX" id="NbY-wY-fou"/>
                         <outlet property="logView" destination="MkD-fp-QAa" id="XHW-86-5Xx"/>
                         <outlet property="placeholderLabel" destination="4dD-gK-lV5" id="P2o-3h-Gfe"/>
+                        <outlet property="settingBtn" destination="YYh-bd-VYX" id="zMn-TO-8w3"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="61d-iW-VJ0"/>
             </objects>
-            <point key="canvasLocation" x="-12011" y="-185.5"/>
+            <point key="canvasLocation" x="-12194" y="-186"/>
         </scene>
     </scenes>
 </document>

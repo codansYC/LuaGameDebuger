@@ -41,14 +41,23 @@ class Server: NSObject, GCDAsyncSocketDelegate {
     var receivedAllJson: String?
     var headDict: Dictionary<String, Int>?
     
+    var scriptObj: NSAppleScript?
+    var scriptError: NSDictionary?
+    var apacheHadOpen = false
+    
     static let shared = Server()
     
     private override init() {
         super.init()
-        self.socket = GCDAsyncSocket(delegate: self, delegateQueue: rwQueue)
+        socket = GCDAsyncSocket(delegate: self, delegateQueue: rwQueue)
     }
     
     func start() {
+        apacheHadOpen = checkApacheOpened()
+        if !checkNginxOpened() {
+            startNginx()
+        }
+        
         do {
             self.socket.disconnect()
             try self.socket.accept(onPort: defaultPort)
@@ -138,8 +147,63 @@ extension Server {
     }
 }
 
+// 本地服务器相关
 extension Server {
     
+    func configNginx() {
+        let path = Bundle.main.path(forResource: "script_nginx", ofType: "scpt")!
+        let url = URL(fileURLWithPath: path)
+        scriptObj = NSAppleScript(contentsOf: url, error: &scriptError)!
+        scriptObj?.compileAndReturnError(&scriptError)
+        scriptObj?.executeAndReturnError(&scriptError)
+        // 安装、配置nginx结束后，开启nginx
+        apacheHadOpen = checkApacheOpened()
+        startNginx()
+        checkConfigSuccess()
+    }
+    
+    func startApache() {
+        let s = NSAppleScript(source: "do shell script \"/usr/local/bin/nginx -s stop;sudo apachectl start\" with administrator privileges")
+        s?.compileAndReturnError(nil)
+        s?.executeAndReturnError(nil)
+    }
+    
+    func startNginx() {
+        let s = NSAppleScript(source: "do shell script \"sudo apachectl stop;/usr/local/bin/nginx -c /usr/local/etc/nginx/nginx.conf;/usr/local/bin/nginx -s reload\" with administrator privileges")
+        s?.compileAndReturnError(nil)
+        s?.executeAndReturnError(nil)
+    }
+    
+    func checkApacheOpened() -> Bool {
+        let path = Bundle.main.path(forResource: "check_apache", ofType: "scpt")!
+        let s = NSAppleScript(contentsOf: URL(fileURLWithPath: path), error: nil)
+        s?.compileAndReturnError(nil)
+        let desc = s?.executeAndReturnError(nil)
+        return desc?.stringValue == "1"
+    }
+    
+    func checkNginxOpened() -> Bool {
+        let path = Bundle.main.path(forResource: "check_nginx", ofType: "scpt")!
+        let s = NSAppleScript(contentsOf: URL(fileURLWithPath: path), error: nil)
+        s?.compileAndReturnError(nil)
+        let desc = s?.executeAndReturnError(nil)
+        return desc?.stringValue == "1"
+    }
+    
+    func checkConfigSuccess() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            let browserUrl = "http://" + Server.shared.ip + ":6789"
+            self.scriptObj = NSAppleScript(source: "do shell script \"open -a /Applications/Safari.app \(browserUrl)\"")
+            self.scriptObj?.compileAndReturnError(&self.scriptError)
+            self.scriptObj?.executeAndReturnError(&self.scriptError)
+        }
+    }
+    
+    func restartApacheIfNeed() {
+        if apacheHadOpen {
+            startApache()
+        }
+    }
 }
 
 class IMMsgModel: BaseCodable {

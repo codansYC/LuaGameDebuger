@@ -18,7 +18,7 @@ class FileHandler {
     }
     var _siteDir = ""
     var siteDir: String {
-        if _siteDir.count == 0 {
+        if _siteDir.isEmpty {
             _siteDir = findSitesDir() ?? ""
         }
         
@@ -67,6 +67,12 @@ class FileHandler {
             let filePath = fileInfo.filePath
             let file = codingDir.appendingPathComponent(filePath)
             if FileManager.default.fileExists(atPath: file) {
+                if (filePath == "testBlueManScene.lua") {
+                    print("test ==== start")
+                    print(fileInfo.modDate)
+                    print(modDate(file) ?? "")
+                    print("test ==== end")
+                }
                 if fileInfo.modDate == modDate(file) {
                     reserveFileInfoArr.append(fileInfo)
                 }
@@ -93,6 +99,7 @@ class FileHandler {
         
         // 将all.json保存进去
         let allJson = (patchFileInfoArr + reserveFileInfoArr).encode() ?? "[]"
+        print("allJson =", allJson)
         let allJsonFile = patchDirPath.appendingPathComponent("all.json")
         FileManager.default.createFile(atPath: allJsonFile, contents: allJson.data(using: String.Encoding.utf8), attributes: nil)
         // 将remove.json保存进去
@@ -172,7 +179,7 @@ class FileHandler {
     
     func zip(_ dir: String) -> Bool {
         if codingDir.isEmpty || siteDir.isEmpty {
-            print("项目目录和服务器目录不能为空")
+            Dispatcher.alert("打包目录和服务器目录不能为空")
             return false
         }
         let zipPath = siteDir.appendingPathComponent(codingDir.lastPathComponent()) + ".zip"
@@ -218,7 +225,7 @@ extension String {
         }
     }
     
-    func lastPathComponent() -> String {
+    mutating func lastPathComponent() -> String {
         let components = self.components(separatedBy: "/")
         return components.last ?? ""
     }
